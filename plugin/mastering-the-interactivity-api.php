@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name:       Mastering The Interativity Api
+ * Plugin Name:       Mastering The Interactivity API
  * Description:       Example block scaffolded with Create Block tool.
- * Version:           0.1.0
+ * Version:           1.0.0
  * Requires at least: 6.7
  * Requires PHP:      7.4
- * Author:            The WordPress Contributors
+ * Author:            Ryan Welcher
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       mastering-the-interativity-api
+ * Text Domain:       mastering-the-interactivity-api
  *
  * @package MasteringIapi
  */
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://make.wordpress.org/core/2025/03/13/more-efficient-block-type-registration-in-6-8/
  * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
  */
-function mastering_iapi_mastering_the_interativity_api_block_init() {
+function mastering_iapi_mastering_the_interactivity_api_block_init() {
 	/**
 	 * Registers the block(s) metadata from the `blocks-manifest.php` and registers the block type(s)
 	 * based on the registered block metadata.
@@ -56,4 +56,57 @@ function mastering_iapi_mastering_the_interativity_api_block_init() {
 		register_block_type( __DIR__ . "/build/{$block_type}" );
 	}
 }
-add_action( 'init', 'mastering_iapi_mastering_the_interativity_api_block_init' );
+add_action( 'init', 'mastering_iapi_mastering_the_interactivity_api_block_init' );
+
+
+
+add_action(
+	'init',
+	function() {
+		wp_interactivity_config(
+			'mastering-iapi-code-snippets',
+			array(
+				'wp-bind' => <<<SNIPPET
+		import { store } from '@wordpress/interactivity';
+
+		store( 'mastering-iapi', {
+			state: {},
+			actions: {
+				toggleCode: () => {
+					const ctx = getContext();
+					ctx.text = 'You pressed the button and changed the text';
+				},
+			},
+			callbacks: {},
+		} );
+		SNIPPET,
+		)
+		);
+	}
+);
+
+
+add_action(
+	'render_block',
+	function( $content, $block ) {
+
+		$config = wp_interactivity_config( 'mastering-iapi-code-snippets' );
+
+		foreach ( $config as $name => $snippet ) {
+			if( $block['blockName'] === "mastering-iapi/{$name}" ) {
+				$content .= '<div class="code-block-wrapper" data-wp-interactive="mastering-iapi" data-wp-context=\'{"copyButtonText":"Copy"}\'>
+		<button
+			class="copy-button"
+			data-wp-on--click="actions.copyCode"
+			data-wp-text="context.copyButtonText"
+		>Copy</button>
+		<pre><code data-wp-bind--hidden="context.codeHidden">'.$snippet.'</code></pre>
+	</div>';
+			}
+		}
+
+		return $content;
+	},
+	10,
+	2
+);

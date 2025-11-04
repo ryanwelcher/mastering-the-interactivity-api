@@ -1,0 +1,13 @@
+{
+	"$schema": "https://www.schemastore.org/babelrc",
+	"extends": "@wordpress/babel-preset-default",
+	"plugins": [
+		[
+			"prismjs",
+			{
+				"languages": [ "javascript", "php", "jsx" ],
+				"css": false
+			}
+		]
+	]
+}

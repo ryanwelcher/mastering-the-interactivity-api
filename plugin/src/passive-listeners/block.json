@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "mastering-iapi/passive-listeners",
+	"version": "0.1.0",
+	"title": "Passive listeners",
+	"category": "widgets",
+	"icon": "media-interactive",
+	"description": "An example of when data-wp-on-async is more performant than data-wp-on",
+	"example": {},
+	"supports": {
+		"interactivity": true
+	},
+	"textdomain": "passive-listeners",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.ts"
+}

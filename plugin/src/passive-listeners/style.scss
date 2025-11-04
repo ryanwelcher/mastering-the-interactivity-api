@@ -1,0 +1,22 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-mastering-iapi-passive-listeners {
+	#scroller-containers {
+		display: flex;
+		align-items: baseline;
+	}
+
+	.container {
+		width: 50%;
+		height: 200px;
+		overflow: scroll;
+		margin: 2rem;
+		padding: 0.4rem;
+		border: 1px solid black;
+	}
+}

@@ -1,4 +1,4 @@
 {
   "plugins": ["./plugin"],
-  "themes": ["./themes/tt4-dark-mode"]
+  "themes": ["./themes/tt4-dark-mode", "twenty-twenty-four"]
 }

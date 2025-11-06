@@ -1,0 +1,152 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-mastering-iapi-declarative-example {
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 16px;
+	padding: 32px;
+	background: #ffffff;
+	box-shadow:
+		0 1px 3px rgba(0, 0, 0, 0.06),
+		0 10px 40px rgba(0, 0, 0, 0.04);
+	max-width: 700px;
+	margin: 32px auto;
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+	&:hover {
+		box-shadow:
+			0 1px 3px rgba(0, 0, 0, 0.08),
+			0 20px 60px rgba(0, 0, 0, 0.08);
+		transform: translateY(-2px);
+	}
+
+	.active {
+		color: #ffffff;
+		font-weight: 500;
+		font-size: 14px;
+		letter-spacing: 0.5px;
+		padding: 10px 20px;
+		background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+		border-radius: 10px;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+		border: none;
+		box-shadow:
+			0 4px 12px rgba(16, 185, 129, 0.3),
+			0 1px 3px rgba(0, 0, 0, 0.1);
+		cursor: pointer;
+
+		&::before {
+			content: "●";
+			font-size: 12px;
+			animation: pulse 2s ease-in-out infinite;
+		}
+
+		&:hover {
+			transform: translateY(-2px) scale(1.02);
+			box-shadow:
+				0 8px 24px rgba(16, 185, 129, 0.4),
+				0 2px 6px rgba(0, 0, 0, 0.15);
+		}
+
+		&:active {
+			transform: translateY(0) scale(0.98);
+		}
+	}
+
+	.inactive {
+		color: #ffffff;
+		font-weight: 500;
+		font-size: 14px;
+		letter-spacing: 0.5px;
+		padding: 10px 20px;
+		background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+		border-radius: 10px;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+		border: none;
+		box-shadow:
+			0 4px 12px rgba(239, 68, 68, 0.3),
+			0 1px 3px rgba(0, 0, 0, 0.1);
+		cursor: pointer;
+
+		&::before {
+			content: "○";
+			font-size: 12px;
+			opacity: 0.8;
+		}
+
+		&:hover {
+			transform: translateY(-2px) scale(1.02);
+			box-shadow:
+				0 8px 24px rgba(239, 68, 68, 0.4),
+				0 2px 6px rgba(0, 0, 0, 0.15);
+		}
+
+		&:active {
+			transform: translateY(0) scale(0.98);
+		}
+	}
+
+	button {
+		font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+		font-weight: 500;
+		font-size: 14px;
+		letter-spacing: 0.3px;
+		padding: 12px 24px;
+		border-radius: 10px;
+		border: none;
+		cursor: pointer;
+		transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+		text-transform: lowercase;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		color: #ffffff;
+		box-shadow:
+			0 4px 12px rgba(102, 126, 234, 0.3),
+			0 1px 3px rgba(0, 0, 0, 0.1);
+		margin-right: 12px;
+		margin-bottom: 16px;
+
+		&:hover:not(:disabled) {
+			transform: translateY(-2px) scale(1.02);
+			box-shadow:
+				0 8px 24px rgba(102, 126, 234, 0.4),
+				0 2px 6px rgba(0, 0, 0, 0.15);
+		}
+
+		&:active:not(:disabled) {
+			transform: translateY(0) scale(0.98);
+		}
+
+		&:disabled {
+			background: #e2e8f0;
+			color: #94a3b8;
+			cursor: not-allowed;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+			opacity: 0.6;
+		}
+
+		&:focus-visible {
+			outline: 2px solid #667eea;
+			outline-offset: 2px;
+		}
+	}
+
+	@keyframes pulse {
+		0%, 100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.5;
+		}
+	}
+}

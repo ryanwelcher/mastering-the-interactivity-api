@@ -12,7 +12,7 @@
 
 $state = array(
 	'copyButtonText' => 'Copy',
-	'activeSnippet'  => 'asdfasd',
+	'activeSnippet'  => '',
 );
 wp_interactivity_state( 'mastering-iapi', $state );
 

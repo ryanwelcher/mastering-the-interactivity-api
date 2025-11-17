@@ -21,7 +21,9 @@ wp_interactivity_state(
 <section
 	<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
 	data-wp-interactive="wp-text"
+	data-wp-init="toc-tracker::callbacks.initItem"
 >
+	<h2>Example of wp-text</h2>
 	<p data-wp-text="state.text"></p>
 	<label for="wp-text-example-input">
 		<?php esc_html_e( 'Update Text:' ); ?>

@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "mastering-iapi/toc-tracker",
+	"version": "0.1.0",
+	"title": "Table of Contents tracker",
+	"description": "A table of contents block that tracks what has been viewed",
+	"category": "widgets",
+	"example": {},
+	"supports": {
+		"interactive": true
+	},
+	"textdomain": "toc-tracker",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScriptModule": "file:./view.js",
+	"render": "file:./render.php"
+}

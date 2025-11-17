@@ -1,0 +1,11 @@
+{
+  "name": "mastering-iapi",
+  "version": "1.0.0",
+  "description": "Repo to help you master the Interactivity API",
+  "author": "Ryan Welcher",
+  "license": "GPL-2.0-or-later",
+  "main": "build/index.js",
+  "scripts": {
+    "block": "cd ./plugin/src && npx @wordpress/create-block@latest --no-plugin --template ../../templates/bdc"
+  }
+}

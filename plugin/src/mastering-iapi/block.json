@@ -4,8 +4,8 @@
 	"name": "mastering-iapi/mastering-iapi",
 	"version": "0.1.0",
 	"title": "Mastering The Interactivity Api",
-	"category": "widgets",
-	"icon": "smiley",
+	"category": "mastering-iapi-blocks",
+	"icon": "image-filter",
 	"description": "Example block scaffolded with Create Block tool.",
 	"example": {},
 	"supports": {

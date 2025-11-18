@@ -4,8 +4,8 @@
 	"name": "mastering-iapi/imperative-example",
 	"version": "0.1.0",
 	"title": "Imperative Example",
-	"category": "widgets",
-	"icon": "smiley",
+	"category": "mastering-iapi-blocks",
+	"icon": "image-filter",
 	"description": "An example of using imperative code to update the DOM.",
 	"example": {},
 	"supports": {

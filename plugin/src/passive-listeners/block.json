@@ -4,8 +4,8 @@
 	"name": "mastering-iapi/passive-listeners",
 	"version": "0.1.0",
 	"title": "Passive listeners",
-	"category": "widgets",
-	"icon": "media-interactive",
+	"category": "mastering-iapi-blocks",
+	"icon": "image-filter",
 	"description": "An example of when data-wp-on-async is more performant than data-wp-on",
 	"example": {},
 	"supports": {

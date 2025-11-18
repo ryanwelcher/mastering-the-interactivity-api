@@ -4,8 +4,8 @@
 	"name": "mastering-iapi/wp-text",
 	"version": "1.0.0",
 	"title": "IAPI: data-wp-text",
-	"category": "widgets",
-	"icon": "smiley",
+	"category": "mastering-iapi-blocks",
+	"icon": "image-filter",
 	"description": "An example of using the data-wp-text directive",
 	"example": {},
 	"supports": {

@@ -4,8 +4,8 @@
 	"name": "mastering-iapi/declarative-example",
 	"version": "0.1.0",
 	"title": "Declarative Example",
-	"category": "widgets",
-	"icon": "smiley",
+	"category": "mastering-iapi-blocks",
+	"icon": "image-filter",
 	"description": "An example of using declarative code to update the DOM.",
 	"example": {},
 	"supports": {

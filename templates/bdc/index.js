@@ -25,6 +25,11 @@ module.exports = {
         title: `IAPI: data-${view.slug}`,
       };
     },
+    npmDevDependencies: ["@wordpress/interactivity"],
+  },
+  variants: {
+    default: {},
+    typescript: {},
   },
   pluginTemplatesPath: join(__dirname, "templates/plugin"),
   blockTemplatesPath: join(__dirname, "templates/block/"),

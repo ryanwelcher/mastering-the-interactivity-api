@@ -34,7 +34,7 @@ export default function Edit() {
 		<section { ...useBlockProps() }>
 			{ __(
 				'Mastering The Interactivity Api: wp-text directive example',
-				'mastering-the-interactivity-api'
+				'mastering-iapi'
 			) }
 		</section>
 	);

@@ -7,7 +7,7 @@ module.exports = {
       prettier: "@wordpress/prettier-config",
     },
     category: "mastering-iapi-blocks",
-    icon: "image-filter",
+    dashicon: "image-filter",
     example: {},
     viewScriptModule: "file:./view.js",
     render: "file:./render.php",
@@ -23,7 +23,6 @@ module.exports = {
       return {
         ...view,
         title: `IAPI: data-${view.slug}`,
-        icon: "image-filter",
       };
     },
     npmDevDependencies: ["@wordpress/interactivity"],

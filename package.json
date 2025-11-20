@@ -6,6 +6,6 @@
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",
   "scripts": {
-    "block": "cd ./plugin/src && npx @wordpress/create-block@latest --no-plugin --template ../../templates/bdc"
+    "block": "cd ./plugin/src && npx @wordpress/create-block@latest --no-plugin --template ../../template"
   }
 }

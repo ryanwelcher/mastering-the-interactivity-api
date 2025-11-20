@@ -23,6 +23,7 @@ module.exports = {
       return {
         ...view,
         title: `IAPI: data-${view.slug}`,
+        icon: "image-filter",
       };
     },
     npmDevDependencies: ["@wordpress/interactivity"],
@@ -31,6 +32,6 @@ module.exports = {
     default: {},
     typescript: {},
   },
-  pluginTemplatesPath: join(__dirname, "templates/plugin"),
-  blockTemplatesPath: join(__dirname, "templates/block/"),
+  pluginTemplatesPath: join(__dirname, "files/plugin"),
+  blockTemplatesPath: join(__dirname, "files/block/"),
 };

@@ -1,0 +1,39 @@
+{{#isDefaultVariant}}
+/**
+ * External Dependencies
+ */
+import Prism from 'prismjs';
+
+/**
+ * WordPress Dependencies
+ */
+import { store, getElement, getContext } from '@wordpress/interactivity';
+
+const { state } = store( '{{slug}}', {
+	state: {},	
+	actions: {
+		toggleHelp: () => {
+			state.showHelp = ! state.showHelp;
+			const tracker = store( 'toc-tracker' );
+			if ( state.showHelp ) {
+				tracker.actions.markAsViewed();
+			}
+		},
+	},
+	callbacks: {
+		initCodeBlock: () => {
+			const { ref } = getElement();
+			const codeBlock = ref.querySelector( 'code' );
+			if ( codeBlock ) {
+				Prism.highlightElement( codeBlock );
+			}
+		},
+		initBlock: () => {
+			const { trackerName } = getContext();
+			const tracker = store( 'toc-tracker' );
+			tracker.callbacks.initItem( trackerName );
+		},
+	},
+} );
+
+{{/isDefaultVariant}}

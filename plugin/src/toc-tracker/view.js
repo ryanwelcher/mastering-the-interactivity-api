@@ -4,7 +4,7 @@ const { state } = store( 'toc-tracker', {
 	state: {
 		get isViewed() {
 			const ctx = getContext();
-			return state.viewedItems.includes( ctx.item );
+			return state.viewedItems.includes( ctx.item.name );
 		},
 	},
 	actions: {
@@ -17,7 +17,10 @@ const { state } = store( 'toc-tracker', {
 	callbacks: {
 		initItem: ( name ) => {
 			if ( name ) {
-				state.items.push( name );
+				state.items.push( {
+					name,
+					anchor: `#${ name.replace( /\s/g, '-' ) }`,
+				} );
 			}
 		},
 	},

@@ -1,4 +1,3 @@
-{{#isDefaultVariant}}
 /**
  * External Dependencies
  */
@@ -9,8 +8,8 @@ import Prism from 'prismjs';
  */
 import { store, getElement, getContext } from '@wordpress/interactivity';
 
-const { state } = store( '{{slug}}', {
-	state: {},	
+const { state } = store( 'wp-on', {
+	state: {},
 	actions: {
 		toggleHelp: () => {
 			state.showHelp = ! state.showHelp;
@@ -20,6 +19,9 @@ const { state } = store( '{{slug}}', {
 			if ( state.showHelp ) {
 				tracker.actions.markAsViewed( trackerName );
 			}
+		},
+		logTime: ( event ) => {
+			state.lastClick = `Last Clicked: ${ new Date().toLocaleTimeString() }`;
 		},
 	},
 	callbacks: {
@@ -37,5 +39,3 @@ const { state } = store( '{{slug}}', {
 		},
 	},
 } );
-
-{{/isDefaultVariant}}

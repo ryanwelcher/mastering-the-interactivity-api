@@ -25,7 +25,7 @@ wp_interactivity_state(
 	<h3><?php esc_html_e( 'Table of Contents', 'mastering-iapi' ); ?></h3>
 	<ul >
 		<template data-wp-each="state.items">
-			<li data-wp-text="context.item" data-wp-class--viewed="state.isViewed"></li>
+			<li data-wp-class--viewed="state.isViewed"><a data-wp-bind--href="context.item.anchor" data-wp-text="context.item.name">asdfasdf</a></li>
 		</template>
 	</ul>
 </section>

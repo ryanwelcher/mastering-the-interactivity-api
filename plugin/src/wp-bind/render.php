@@ -1,82 +1,86 @@
 <?php
 /**
- * PHP file to use when rendering the block type on the server to show on the front end.
- *
- * The following variables are exposed to the file:
- *     $attributes (array): The block attributes.
- *     $content (string): The block default content.
- *     $block (WP_Block): The block instance.
- *
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
 wp_interactivity_state(
-	'wp-text',
+	'wp-bind',
 	array(
-		'text'     => __( 'Using the wp-text to set the text.' ),
 		'showHelp' => false,
 	)
 );
 
-
 $php = <<<'SNIPPET'
-<?php
-wp_interactivity_state(
-	'wp-text',
-	array(
-		'text' => __( 'Using the wp-text to set the text.' ),
-	)
-);
-
-?>
 <section
-	<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
-	data-wp-interactive="wp-text"
+<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
+	data-wp-interactive="wp-bind"
 >
-	<p data-wp-text="state.text"></p>
-	<label for="wp-text-example-input">
-		<?php esc_html_e( 'Update Text:' ); ?>
-	</label>
-	<input
-		id="wp-text-example-input"
-		data-wp-on--input="actions.updateText"
-		placeholder="<?php esc_html_e( 'Enter text...' ); ?>"
-	/>
+	<li data-wp-context='{ "isMenuOpen": false }'>
+		<button
+			data-wp-on--click="actions.toggleMenu"
+			data-wp-bind--aria-expanded="context.isMenuOpen"
+			data-wp-text="state.menuStatus"
+		>
+		</button>
+		<div data-wp-bind--hidden="!context.isMenuOpen">
+			<ul>
+				<li><a href="#">Item 1</a></li>
+				<li><a href="#">Item 2</a></li>
+				<li><a href="#">Item 3</a></li>
+			</ul>
+		</div>
+	</li>
 </section>
 SNIPPET;
 
 $js = <<<'SNIPPET'
-const { state } = store( 'wp-text', {
-	state: {},
-	actions: {
-		updateText: ( evt ) => {
-			state.text = evt.target.value;
+const { state } = store( 'wp-bind', {
+	state: {
+		get menuStatus() {
+			const context = getContext();
+			return context.isMenuOpen ? 'Menu is open' : 'Menu is closed';
 		},
 	},
+	actions: {
+		toggleMenu: () => {
+			const context = getContext();
+			context.isMenuOpen = ! context.isMenuOpen;
+		},
+	},
+	callbacks: {},
 } );
 SNIPPET;
+
 ?>
 <section
-	<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
-	data-wp-interactive="wp-text"
+<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
+	data-wp-interactive="wp-bind"
 	data-wp-init="callbacks.initBlock"
-	data-wp-context='{"trackerName":"wp-text example"}'
+	data-wp-context='{"trackerName":"wp-bind example"}'
 >
-	<p data-wp-text="state.text"></p>
-	<label for="wp-text-example-input">
-		<?php esc_html_e( 'Update Text:' ); ?>
-	</label>
-	<input
-		id="wp-text-example-input"
-		data-wp-on--input="actions.updateText"
-		placeholder="<?php esc_html_e( 'Enter text...' ); ?>"
-	/>
+	<li data-wp-context='{ "isMenuOpen": false }'>
+		<button
+			data-wp-on--click="actions.toggleMenu"
+			data-wp-bind--aria-expanded="context.isMenuOpen"
+			data-wp-text="state.menuStatus"
+			class="iapi-button"
+		>
+		</button>
+		<div data-wp-bind--hidden="!context.isMenuOpen">
+			<ul>
+				<li><a href="#">Item 1</a></li>
+				<li><a href="#">Item 2</a></li>
+				<li><a href="#">Item 3</a></li>
+			</ul>
+		</div>
+	</li>
 	<hr />
 	<div class="explainer-area">
 		<button
 			class="help-button"
 			data-wp-on--click="actions.toggleHelp"
 			aria-label="<?php esc_attr_e( 'Toggle code blocks' ); ?>"
+			data-tracker-name="<?php echo esc_html( $tracker_name ); ?>"
 		>
 			<span class="help-icon">?</span>
 			<span class="help-label"><?php esc_html_e( 'Toggle code' ); ?></span>

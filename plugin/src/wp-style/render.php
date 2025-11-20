@@ -1,76 +1,58 @@
 <?php
 /**
- * PHP file to use when rendering the block type on the server to show on the front end.
- *
- * The following variables are exposed to the file:
- *     $attributes (array): The block attributes.
- *     $content (string): The block default content.
- *     $block (WP_Block): The block instance.
- *
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
 wp_interactivity_state(
-	'wp-text',
+	'wp-style',
 	array(
-		'text'     => __( 'Using the wp-text to set the text.' ),
 		'showHelp' => false,
 	)
 );
 
-
 $php = <<<'SNIPPET'
-<?php
-wp_interactivity_state(
-	'wp-text',
-	array(
-		'text' => __( 'Using the wp-text to set the text.' ),
-	)
-);
-
-?>
 <section
 	<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
-	data-wp-interactive="wp-text"
+	data-wp-interactive="wp-style"
 >
-	<p data-wp-text="state.text"></p>
-	<label for="wp-text-example-input">
-		<?php esc_html_e( 'Update Text:' ); ?>
-	</label>
-	<input
-		id="wp-text-example-input"
-		data-wp-on--input="actions.updateText"
-		placeholder="<?php esc_html_e( 'Enter text...' ); ?>"
-	/>
-</section>
+	<div data-wp-context='{ "color": "var(--wp--preset--color--contrast)" }'>
+		<button data-wp-on--click="actions.toggleContextColor" class="iapi-button">
+			Toggle Color Text
+		</button>
+		<p data-wp-style--color="context.color">Hello World!</p>
+	</div>
+</section
 SNIPPET;
 
 $js = <<<'SNIPPET'
-const { state } = store( 'wp-text', {
+const { state } = store( 'wp-style', {
 	state: {},
 	actions: {
-		updateText: ( evt ) => {
-			state.text = evt.target.value;
+		toggleContextColor: () => {
+			const context = getContext();
+			context.color =
+				context.color === 'var(--wp--preset--color--contrast)'
+					? 'var(--wp--preset--color--accent)'
+					: 'var(--wp--preset--color--contrast)';
 		},
 	},
+	callbacks: {},
 } );
 SNIPPET;
+
 ?>
 <section
 	<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
-	data-wp-interactive="wp-text"
+	data-wp-interactive="wp-style"
 	data-wp-init="callbacks.initBlock"
-	data-wp-context='{"trackerName":"wp-text example"}'
+	data-wp-context='{"trackerName":"wp-style example"}'
 >
-	<p data-wp-text="state.text"></p>
-	<label for="wp-text-example-input">
-		<?php esc_html_e( 'Update Text:' ); ?>
-	</label>
-	<input
-		id="wp-text-example-input"
-		data-wp-on--input="actions.updateText"
-		placeholder="<?php esc_html_e( 'Enter text...' ); ?>"
-	/>
+	<div data-wp-context='{ "color": "var(--wp--preset--color--contrast)" }'>
+		<button data-wp-on--click="actions.toggleContextColor" class="iapi-button">
+			Toggle Color Text
+		</button>
+		<p data-wp-style--color="context.color">Hello World!</p>
+	</div>
 	<hr />
 	<div class="explainer-area">
 		<button

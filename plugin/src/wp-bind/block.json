@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "mastering-iapi/wp-bind",
+	"version": "0.1.0",
+	"title": "IAPI: data-wp-bind",
+	"category": "mastering-iapi-blocks",
+	"icon": "image-filter",
+	"example": {},
+	"textdomain": "wp-bind",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScriptModule": "file:./view.js",
+	"render": "file:./render.php"
+}

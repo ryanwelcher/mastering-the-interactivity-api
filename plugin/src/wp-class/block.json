@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "mastering-iapi/wp-class",
+	"version": "0.1.0",
+	"title": "IAPI: data-wp-class",
+	"category": "mastering-iapi-blocks",
+	"example": {},
+	"supports": {
+		"interactive": true
+	},
+	"icon": "image-filter",
+	"textdomain": "mastering-iapi",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.js"
+}

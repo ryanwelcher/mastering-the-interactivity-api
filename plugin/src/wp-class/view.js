@@ -8,21 +8,22 @@ import Prism from 'prismjs';
  */
 import { store, getElement, getContext } from '@wordpress/interactivity';
 
-const { state } = store( 'wp-text', {
+const { state } = store( 'wp-class', {
 	state: {},
 	actions: {
-		updateText: ( evt ) => {
-			state.text = evt.target.value;
-		},
 		toggleHelp: () => {
 			state.showHelp = ! state.showHelp;
 			// Handle marking as viewed in the toc-tracker store
 			const { trackerName } = getContext();
-			console.log( 'trackerName:', trackerName );
 			const tracker = store( 'toc-tracker' );
 			if ( state.showHelp ) {
 				tracker.actions.markAsViewed( trackerName );
 			}
+		},
+		toggleSelection: () => {
+			console.log( 'Toggling selection' );
+			const context = getContext();
+			context.isSelected = ! context.isSelected;
 		},
 	},
 	callbacks: {

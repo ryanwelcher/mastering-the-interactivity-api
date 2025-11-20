@@ -8,7 +8,7 @@
  * Author:            Ryan Welcher
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       mastering-the-interactivity-api
+ * Text Domain:       mastering-api
  *
  * @package MasteringIapi
  */
@@ -59,54 +59,133 @@ function mastering_iapi_mastering_the_interactivity_api_block_init() {
 add_action( 'init', 'mastering_iapi_mastering_the_interactivity_api_block_init' );
 
 
-
 add_action(
 	'init',
-	function() {
+	function () {
+
+		$php      = <<<'HEREDOC'
+			<section
+			<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
+			data-wp-interactive="wp-text"
+		>
+			<p data-wp-text="state.text"></p>
+			<label for="wp-text-example-input">
+				<?php esc_html_e( 'Update Text:' ); ?>
+			</label>
+			<input
+				id="wp-text-example-input"
+				data-wp-on--input="actions.updateText"
+				placeholder="<?php esc_html_e( 'Enter text...' ); ?>"
+			/>
+		</section>
+		HEREDOC;
+		$snippets = array(
+			'wp-text' => array(
+				'php' => $php,
+				'jsx' => <<<'SNIPPET'
+				import { store } from '@wordpress/interactivity';
+
+			const { state } = store( 'wp-text', {
+				state: {},
+				actions: {
+					updateText: ( evt ) => {
+						state.text = evt.target.value;
+					},
+				},
+				callbacks: {},
+			} );
+			SNIPPET,
+			),
+			'wp-bind' => array(
+				'php' => <<<'SNIPPET'
+								<section
+				<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
+				data-wp-interactive="wp-bind"
+				>
+					<li data-wp-context='{ "isMenuOpen": false }'>
+						<button
+							data-wp-on--click="actions.toggleMenu"
+							data-wp-bind--aria-expanded="context.isMenuOpen"
+							data-wp-text="state.menuStatus"
+						>
+						</button>
+						<div data-wp-bind--hidden="!context.isMenuOpen">
+							<ul>
+								<li><a href="#">Item 1</a></li>
+								<li><a href="#">Item 2</a></li>
+								<li><a href="#">Item 3</a></li>
+							</ul>
+						</div>
+					</li>
+					<div>
+						<hr />
+						<button
+							data-wp-on--click="mastering-iapi::actions.updateCodeSnippet"
+							data-snippet="wp-bind"
+							data-lang="php"
+							class="show-code-button"
+						>Show render.php</button>
+						<button
+							data-wp-on--click="mastering-iapi::actions.updateCodeSnippet"
+							data-snippet="wp-bind"
+							data-lang="jsx"
+							class="show-code-button"
+						>Show view.js</button>
+					</div>
+				</section>
+				SNIPPET,
+				'jsx' => <<<'SNIPPET'
+				import { store, getContext } from '@wordpress/interactivity';
+
+			store( 'wp-bind', {
+				state: {
+					get menuStatus() {
+						const context = getContext();
+						return context.isMenuOpen ? 'Menu is open' : 'Menu is closed';
+					},
+				},
+				actions: {
+					toggleMenu: () => {
+						const context = getContext();
+						context.isMenuOpen = ! context.isMenuOpen;
+					},
+				},
+				callbacks: {},
+			} );
+			SNIPPET,
+			),
+		);
 		wp_interactivity_config(
 			'mastering-iapi-code-snippets',
-			array(
-				'wp-bind' => <<<SNIPPET
-		import { store } from '@wordpress/interactivity';
-
-		store( 'mastering-iapi', {
-			state: {},
-			actions: {
-				toggleCode: () => {
-					const ctx = getContext();
-					ctx.text = 'You pressed the button and changed the text';
-				},
-			},
-			callbacks: {},
-		} );
-		SNIPPET,
-		)
+			$snippets
 		);
 	}
 );
 
 
+// Enqueue filename from a plugin
 add_action(
-	'render_block',
-	function( $content, $block ) {
+	'wp_enqueue_scripts',
+	function () {
+		wp_enqueue_style(
+			'prism',
+			plugin_dir_url( __FILE__ ) . '/assets/prism.css',
+			array(),
+		);
+	}
+);
 
-		$config = wp_interactivity_config( 'mastering-iapi-code-snippets' );
-
-		foreach ( $config as $name => $snippet ) {
-			if( $block['blockName'] === "mastering-iapi/{$name}" ) {
-				$content .= '<div class="code-block-wrapper" data-wp-interactive="mastering-iapi" data-wp-context=\'{"copyButtonText":"Copy"}\'>
-		<button
-			class="copy-button"
-			data-wp-on--click="actions.copyCode"
-			data-wp-text="context.copyButtonText"
-		>Copy</button>
-		<pre><code data-wp-bind--hidden="context.codeHidden">'.$snippet.'</code></pre>
-	</div>';
-			}
-		}
-
-		return $content;
+add_filter(
+	'block_categories_all',
+	function ( $categories ) {
+		array_unshift(
+			$categories,
+			array(
+				'slug'  => 'mastering-iapi-blocks',
+				'title' => __( 'Mastering the Interactivity API', 'block-developer-cookbook' ),
+			)
+		);
+		return $categories;
 	},
-	10,
-	2
+	10
 );

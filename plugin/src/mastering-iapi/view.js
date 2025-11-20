@@ -30,18 +30,15 @@ const { state } = store( 'mastering-iapi', {
 
 			const code = snippets[ snippet ][ lang ] || '';
 
-			state.lang = lang;
-
-			// console.log( Prism.languages );
-
 			const html = Prism.highlight(
 				code.trim(),
 				lang === 'jsx' ? Prism.languages.jsx : Prism.languages.php,
 				lang === 'jsx' ? 'jsx' : 'php'
 			);
-			console.log( html );
 			state.codeTagRef.innerHTML = html;
-			// Prism.highlightAll();
+			state.lang = lang;
+			state.activeSnippet = code;
+			Prism.highlightAll();
 			// clean up if the button hasn't reset.
 			state.copyButtonText = 'Copy';
 		},
@@ -67,7 +64,7 @@ const { state } = store( 'mastering-iapi', {
 	callbacks: {
 		init: () => {
 			Prism.manual = true;
-			// Prism.highlightAll();
+			Prism.highlightAll();
 		},
 		initCodeBlock: () => {
 			const { ref } = getElement();

@@ -27,12 +27,26 @@ $config = wp_interactivity_config( 'mastering-iapi-code-snippets' );
 		class="copy-button"
 		data-wp-on--click="actions.copyCode"
 		data-wp-text="state.copyButtonText"
-		hidden
+		data-wp-bind--hidden="state.noSnippet"
+
 	></button>
-	<pre class="language-php"><code
+	<pre class="language-php" data-wp-bind--hidden="state.noSnippet"><code
 			data-wp-init="callbacks.initCodeBlock"
 			data-wp-text="state.activeSnippet"
 			class="language-php"
-			></code>
-	</pre>
+			data-wp-bind--hidden="state.noSnippet"
+			></code></pre>
 </div>
+
+
+<ul data-wp-context='{ "fruits": ["Apple", "Banana", "Cherry"] }'>
+    ...
+</ul>
+
+<?php
+
+$context = array( 'fruits' => array( 'Apple', 'Banana', 'Cherry' ) );
+?>
+<ul <?php echo wp_interactivity_data_wp_context( $context ); ?>>
+  ...
+</ul>

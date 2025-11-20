@@ -81,45 +81,10 @@
 		}
 	}
 
-	// 	code {
-	// 		background-color: transparent;
-	// 		color: #e3dfff;
-	// 		font-family: 'Operator Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-	// 		font-size: 14px;
-	// 		line-height: 1.6;
-	// 		display: block;
-	// 		padding: 0;
-	// 		border: none;
-	// 		text-shadow: none;
-
-	// 		// Syntax highlighting hints (Shades of Purple style)
-	// 		// Keywords
-	// 		.keyword {
-	// 			color: #ff9d00;
-	// 			font-weight: 600;
-	// 		}
-
-	// 		// Strings
-	// 		.string {
-	// 			color: #a5ff90;
-	// 		}
-
-	// 		// Functions
-	// 		.function {
-	// 			color: #fad000;
-	// 		}
-
-	// 		// Comments
-	// 		.comment {
-	// 			color: #b362ff;
-	// 			font-style: italic;
-	// 		}
-	// 	}
-	// }
 	// Copy button styling
 	.copy-button {
 		position: absolute;
-		top: 12px;
+		top: 20px;
 		right: 12px;
 		font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 		font-weight: 500;

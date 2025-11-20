@@ -21,9 +21,8 @@ wp_interactivity_state(
 <section
 	<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
 	data-wp-interactive="toc-tracker"
-	data-wp-watch="callbacks.trackViewed"
 >
-	<h3><?php esc_html_e( 'Table of Contents', 'mastering-iapi') ;?></h3>
+	<h3><?php esc_html_e( 'Table of Contents', 'mastering-iapi' ); ?></h3>
 	<ul >
 		<template data-wp-each="state.items">
 			<li data-wp-text="context.item" data-wp-class--viewed="state.isViewed"></li>

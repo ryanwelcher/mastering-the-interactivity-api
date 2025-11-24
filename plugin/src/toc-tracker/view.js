@@ -13,6 +13,15 @@ const { state } = store( 'toc-tracker', {
 				state.viewedItems.push( name );
 			}
 		},
+		scrollTo: ( event ) => {
+			event.preventDefault();
+			const ctx = getContext();
+			const item = ctx.item.name;
+			const el = document.getElementById( item.replace( /\s/g, '-' ) );
+			el.scrollIntoView( {
+				behavior: 'smooth',
+			} );
+		},
 	},
 	callbacks: {
 		initItem: ( name ) => {

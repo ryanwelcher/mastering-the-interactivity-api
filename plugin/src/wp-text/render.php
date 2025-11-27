@@ -59,9 +59,9 @@ SNIPPET;
 <section
 	<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
 	data-wp-interactive="wp-text"
-	data-wp-init="callbacks.initBlock"
-	data-wp-context='{"trackerName":"wp-text example"}'
+	data-wp-router-region="directive-example"
 >
+	<h2>wp-text</h2>
 	<p data-wp-text="state.text"></p>
 	<label for="wp-text-example-input">
 		<?php esc_html_e( 'Update Text:' ); ?>

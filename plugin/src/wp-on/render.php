@@ -44,9 +44,9 @@ SNIPPET;
 <section
 <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
 	data-wp-interactive="wp-on"
-	data-wp-init="callbacks.initBlock"
-	data-wp-context='{"trackerName":"wp-on example"}'
+	data-wp-router-region="directive-example"
 >
+	<h2>wp-on</h2>
 	<button data-wp-on--click="actions.logTime" class="iapi-button">Click Me!</button>
 	<p data-wp-text="state.lastClick"></p>
 	<hr />

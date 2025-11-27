@@ -1,0 +1,84 @@
+
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+// Section wrapper - hide default styling
+.wp-block-mastering-iapi-router-attach-to {
+	all: unset;
+	display: contents;
+}
+
+// Full-page overlay container
+.router-attach-to-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+// Full-page backdrop
+.router-attach-to-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: color-mix(in srgb, var(--wp--preset--color--contrast) 50%, transparent);
+	backdrop-filter: blur(4px);
+}
+
+// Popup content box
+.router-attach-to-content {
+	position: relative;
+	z-index: 1;
+	color: var(--wp--preset--color--contrast);
+	border: 1px solid var(--wp--preset--color--contrast-3);
+	border-radius: 16px;
+	padding: 48px 32px 32px;
+	background: var(--wp--preset--color--base-2);
+	box-shadow:
+		0 1px 3px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)),
+		0 10px 40px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.4));
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	max-width: 600px;
+	max-height: 90vh;
+}
+
+// Close button
+.router-attach-to-close {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	width: 32px;
+	height: 32px;
+	border: none;
+	border-radius: 8px;
+	background: var(--wp--preset--color--contrast-2);
+	color: var(--wp--preset--color--contrast);
+	font-size: 24px;
+	line-height: 1;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease;
+
+	&:hover {
+		background: var(--wp--preset--color--contrast-3);
+		transform: scale(1.05);
+	}
+
+	&:active {
+		transform: scale(0.95);
+	}
+}

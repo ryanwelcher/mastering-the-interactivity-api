@@ -55,9 +55,9 @@ SNIPPET;
 <section
 <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
 	data-wp-interactive="wp-bind"
-	data-wp-init="callbacks.initBlock"
-	data-wp-context='{"trackerName":"wp-bind example"}'
+	data-wp-router-region="directive-example"
 >
+	<h2>wp-bind</h2>
 	<li data-wp-context='{ "isMenuOpen": false }'>
 		<button
 			data-wp-on--click="actions.toggleMenu"

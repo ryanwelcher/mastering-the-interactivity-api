@@ -49,9 +49,9 @@ SNIPPET;
 <section
 <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
 	data-wp-interactive="wp-class"
-	data-wp-init="callbacks.initBlock"
-	data-wp-context='{"trackerName":"wp-class example"}'
+	data-wp-router-region="directive-example"
 >
+	<h2>wp-class</h2>
 	<ul>
 		<li
 			data-wp-context='{ "isSelected": false }'
